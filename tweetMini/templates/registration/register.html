@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register - TweetMini
+{% endblock %}
+
+{% block heading %}
+<h1 class="mx-3 lg:mx-36 my-3 text-3xl font-semibold leading-normal text-slate-400 flex justify-start items-center">
+    Register to Get Started
+</h1>
+{% endblock %}
+
+{% block content %}
+<div class="md:mx-auto w-fit mx-3 md:min-w-[40vw] p-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="flex justify-center px-4 pt-4 text-black">
+        <form id="register-form" method="post" class="max-w-sm mx-auto">
+            {% csrf_token %}
+            <div class="mb-5">
+                <label for="{{ form.username.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-5">
+                <label for="{{ form.email.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="mb-5">
+                <label for="{{ form.password1.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                {{ form.password1 }}
+                <div id="password-requirements" class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    <ul>
+                        <li>At least 8 characters long</li>
+                        <li>Contains both uppercase and lowercase letters</li>
+                        <li>Includes at least one number</li>
+                        <li>Contains at least one special character (e.g., @, #, $, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-5">
+                <label for="{{ form.password2.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat password</label>
+                {{ form.password2 }}
+            </div>
+            <div id="error-message" class="hidden mb-4 text-sm font-medium text-red-600 dark:text-red-400"></div>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
+            <div class="mt-5 text-sm font-medium text-gray-500 dark:text-gray-300">
+                Already have an account? <a href="{% url 'login' %}" class="text-blue-700 hover:underline dark:text-blue-500">Login Here</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.querySelector('#register-form');
+        var passwordField = document.querySelector('#{{ form.password1.id_for_label }}');
+        var errorMessage = document.querySelector('#error-message');
+
+        function validatePassword(password) {
+            var requirements = [
+                { regex: /.{8,}/, message: "At least 8 characters long" },
+                { regex: /[a-z]/, message: "Contains lowercase letter" },
+                { regex: /[A-Z]/, message: "Contains uppercase letter" },
+                { regex: /\d/, message: "Contains number" },
+                { regex: /[@$!%*?&#]/, message: "Contains special character" }
+            ];
+
+            var messages = requirements.filter(function(requirement) {
+                return !requirement.regex.test(password);
+            }).map(function(requirement) {
+                return requirement.message;
+            });
+
+            return messages;
+        }
+
+        form.addEventListener('submit', function(event) {
+            var password = passwordField.value;
+            var validationMessages = validatePassword(password);
+
+            if (validationMessages.length > 0) {
+                event.preventDefault();
+                errorMessage.innerHTML = 'Password must meet the following criteria:<br>' + validationMessages.join('<br>');
+                errorMessage.classList.remove('hidden');
+            } else {
+                errorMessage.classList.add('hidden');
+            }
+        });
+    });
+</script>
+{% endblock %}

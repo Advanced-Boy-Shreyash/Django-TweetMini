@@ -1,0 +1,61 @@
+# Python bytecode
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+
+# Virtual environment
+.venv/
+env/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.mo
+*.db
+*.sqlite3
+
+# If you're using SQLite3:
+db.sqlite3
+db.sqlite3-journal
+
+# Django migrations
+migrations/
+
+# Media files
+media/
+
+# Static files
+staticfiles/
+
+# Ignore env directory
+.env
+
+# Pytest
+.coverage
+.cache
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+*.bak
+*.swp
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr

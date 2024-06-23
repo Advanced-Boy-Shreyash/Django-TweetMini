@@ -1,0 +1,6 @@
+{%block content%}
+{% if user %}
+{{user}}
+{% else %}
+<p> You are not logged in. Please <a href="{% url 'login' %}
+{% endblock %}
