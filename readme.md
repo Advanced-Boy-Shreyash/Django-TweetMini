@@ -1,14 +1,17 @@
 # TweetMini
 
 TweetMini is a basic Django-based application that allows users to authenticate, create tweets, edit tweets, and delete tweets. This mini-project serves as a simple example of how to build a basic CRUD (Create, Read, Update, Delete) application with Django.
+
 ## Tech Stack
 Django
+
 ## Features
 
 - User Authentication: Users can register, log in, and log out.
 - Create Tweet: Authenticated users can create new tweets.
 - Edit Tweet: Authenticated users can edit their existing - tweets.
 - Delete Tweet: Authenticated users can delete their tweets.
+
 ## Screenshots
 
 ![Screenshot 1](home_image.png)
@@ -20,6 +23,7 @@ Django
 - Python 3.x
 - Django 3.x or higher
 - Virtualenv (optional but recommended)
+
 ## Installation
 To install this project in your local machine run this command
 
@@ -55,8 +59,10 @@ Two terminals required:
    ```bash
    python manage.py tailwind start
    ```
+
 ## Run Locally
 Open your browser and navigate to http://127.0.0.1:8000/.
+
 ## Usage/Examples
 
 User Authentication
